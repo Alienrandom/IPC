@@ -136,9 +136,17 @@ public class CartanautController implements Initializable {
 
     @FXML
     private void CartSalirClick(ActionEvent event) {
-        System.out.println("Cerrando inicio de sesión");
-        primaryStage.setTitle("Navs");
-        primaryStage.setScene(escenaPrincipal);
+        try {
+            primaryStage.setTitle("Navs");
+            FXMLLoader miCargador  = new FXMLLoader(getClass().getResource("Main.fxml"));
+            Parent root = miCargador.load();
+         // acceso al controlador de ventana 1
+            FXMLMainController ventanaini = miCargador.getController();
+            ventanaini.initStage(primaryStage);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {e.printStackTrace();}
         
     }
 
